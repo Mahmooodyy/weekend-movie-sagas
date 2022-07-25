@@ -1,21 +1,28 @@
 import {HashRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import MovieList from '../MovieList/MovieList'
+import MovieDetails from '../MovieDetails/MovieDetails';
+import MovieList from '../MovieList/MovieList';
+
+// Material-UI
+import { Grid } from '@material-ui/core';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>The Movies Saga!</h1>
-      <Router>        
-        <Route path="/" exact>
-          <MovieList />
-        </Route>
-        
-        {/* Details page */}
 
-        {/* Add Movie page */}
-      </Router>
-    </div>
+  return (
+    <Grid>
+      <Grid item>        
+        <Router>        
+          <Route path="/" exact>
+            <MovieList />
+          </Route>
+          
+          {/* Details page */}
+          <Route path="/details/:id">
+            <MovieDetails />
+          </Route>
+        </Router>
+      </Grid>
+    </Grid>
   );
 }
 
