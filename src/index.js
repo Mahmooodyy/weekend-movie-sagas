@@ -59,6 +59,23 @@ function* fetchMovieDetails(action) {
   }
 } // end fetchMovieDetails
 
+function* fetchMovieDetails(action) {
+    console.log("action.payload", action.payload);
+  
+    // movieId from poster click, will be used as URL Param
+    const movieId = action.payload;
+  
+    // get movie details associated with movieId
+    // title, description, poster, genres
+    try {
+      const movieDetails = yield axios.get(`/api/details/${movieId}`);
+      console.log("get movie details:", movieDetails.data);
+      yield put({ type: "SET_MOVIE_DETAILS", payload: movieDetails.data });
+    } catch (err) {
+      console.log("Error getting movie details", err);
+    }
+  } // end fetchMovieDetails
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
